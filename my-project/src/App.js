@@ -1,22 +1,22 @@
 import Sidebar from './components/Sidebar';
-import Home from './components/Home';
-import Albums from './components/Albums';
-import Artists from './components/Artists';
-import Songs from './components/Songs';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Albums from './pages/Albums';
+import Artists from './pages/Artists';
+import Songs from './pages/Songs';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const App = () => {
   return (
     <div className="flex">
-      <Sidebar />
-      <BrowserRouter>
+      <Router>
+        <Sidebar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="albums" element={<Albums />} />
-          <Route path="artists" element={<Artists />} />
-          <Route path="songs" element={<Songs />} />
+          <Route path="/albums" element={<Albums />} />
+          <Route path="/artists" element={<Artists />} />
+          <Route path="/songs" element={<Songs />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 };

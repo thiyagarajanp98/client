@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FcMusic } from 'react-icons/fc';
 import { MdOutlineKeyboardArrowLeft, MdLibraryMusic } from 'react-icons/md';
 import { IoMdAlbums } from 'react-icons/io';
@@ -12,12 +13,33 @@ import {
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
   const Menus = [
-    { title: 'Home', Icon: <RiHome2Fill className="h-5 w-5 " /> },
-    { title: 'Albums', Icon: <RiAlbumFill className="h-5 w-5" /> },
-    { title: 'Artists', Icon: <RiUser2Fill className="h-5 w-5" /> },
-    { title: 'Songs', Icon: <RiMusicFill className="h-5 w-5" />, gap: true },
-    { title: 'Recently Played', Icon: <IoMdAlbums className="h-5 w-5" /> },
-    { title: 'Library', Icon: <MdLibraryMusic className="h-5 w-5" /> },
+    { title: 'Home', link: '/', Icon: <RiHome2Fill className="h-5 w-5 " /> },
+    {
+      title: 'Albums',
+      link: '/albums',
+      Icon: <RiAlbumFill className="h-5 w-5" />,
+    },
+    {
+      title: 'Artists',
+      link: '/artists',
+      Icon: <RiUser2Fill className="h-5 w-5" />,
+    },
+    {
+      title: 'Songs',
+      link: '/songs',
+      Icon: <RiMusicFill className="h-5 w-5" />,
+    },
+    {
+      title: 'Recently Played',
+      link: '/songs',
+      gap: true,
+      Icon: <IoMdAlbums className="h-5 w-5" />,
+    },
+    {
+      title: 'Library',
+      link: '/songs',
+      Icon: <MdLibraryMusic className="h-5 w-5" />,
+    },
   ];
   return (
     <div className="flex">
@@ -49,20 +71,22 @@ const Sidebar = () => {
         </div>
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
-            <li
-              key={index}
-              className={`text-gray-300 text-sm flex item-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md ${
-                Menu.gap ? 'mt-9' : 'mt-2'
-              }`}
-            >
-              <span>{Menu.Icon}</span>
-              <span
-                className={`${
-                  !open && 'hidden'
-                } origin-left duration-200 whitespace-nowrap`}
+            <li key={index}>
+              <Link
+                className={`text-gray-300 text-sm flex item-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md ${
+                  Menu.gap ? 'mt-9' : 'mt-2'
+                }`}
+                to={Menu.link}
               >
-                {Menu.title}
-              </span>
+                <span>{Menu.Icon}</span>
+                <span
+                  className={`${
+                    !open && 'hidden'
+                  } origin-left duration-200 whitespace-nowrap`}
+                >
+                  {Menu.title}
+                </span>
+              </Link>
             </li>
           ))}
         </ul>
