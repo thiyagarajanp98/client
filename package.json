@@ -1,10 +1,17 @@
 {
   "name": "node-starter",
   "version": "0.0.0",
+  "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "axios": "^0.27.2",
+    "express": "^4.17.1",
+    "mongodb": "^4.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
   }
 }
