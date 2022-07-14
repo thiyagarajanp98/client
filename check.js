@@ -1,84 +1,95 @@
-const mongodb = require('./mongodb');
-const axios = require('axios');
+const mongodb = require("./mongodb");
+const songs = require("./songs");
+const axios = require("axios");
+const albums = require("./albums");
 
 const check = async () => {
+  await recheck();
+  const collection = await mongodb();
+  const artistprojection = { _id: 0, artistId: 1 };
+  const artist = await collection
+    .collection("Artists")
+    .find()
+    .project(artistprojection)
+    .toArray();
+  let count = 0;
+  for (let data of artist) {
+    console.log(++count + " " + data.artistId);
+    await getAlbum(data.artistId);
+    console.log(data.artistId + " is done");
+  }
+  getsong();
+  await recheck();
+};
+const recheck = async () => {
   const collection = await mongodb();
   const projection = { _id: 0, album: 1, albumid: 1, numSongs: 1 };
   const allalbum = await collection
-    .collection('Albums')
+    .collection("Albums")
     .find()
     .project(projection)
     .toArray();
-  let count = 0;
   let findSongs = allalbum.map(async (data) => {
     const song = await collection
-      .collection('songs')
+      .collection("Songs")
       .find({ albumid: data.albumid })
       .toArray();
-
-    console.log((count += data.numSongs));
-    //if (song.length === data.numSongs) {
-    // console.log(data.album);
-    // console.log("Num of song: " + song.length + " = " + data.numSongs);
-    // let songData = song.map((res) => res.song);
-    // console.log(songData);
-    // } else {
-    //   console.log(data.album + " : " + data.albumid);
-    //   console.log("Num of song: " + song.length + " = " + data.numSongs);
-    //   let songData = song.map((res) => res.song);
-    //   console.log(songData);
-    // let path = `https://www.jiosaavn.com/api.php?_marker=0&_format=json&__call=content.getAlbumDetails&albumid=${data.albumid}`;
-    // let result = await axios.get(path);
-    // console.log("current album: " + data.albumid);
-    // result.data.songs.map(async (data) => {
-    //   const projection = { _id: 0, id: 1 };
-    //   const songCheck = await collection
-    //     .collection("songs")
-    //     .find({ id: data.id })
-    //     .project(projection)
-    //     .toArray();
-    //   if (songCheck.length === 0) {
-    //     await collection.collection("songs").insertOne(
-    //       {
-    //         id: data.id,
-    //         song: data.song,
-    //         album: data.album,
-    //         year: data.year,
-    //         music: data.music,
-    //         music_id: data.music_id,
-    //         primary_artists: data.primary_artists,
-    //         primary_artists_id: data.primary_artists_id,
-    //         singers: data.singers,
-    //         image: data.image,
-    //         albumid: data.albumid,
-    //         language: data.language,
-    //         origin: data.origin,
-    //         is_movie: data.is_movie,
-    //         encrypted_media_url: data.encrypted_media_url,
-    //         media_preview_url: data.media_preview_url
-    //           .replace(
-    //             data.media_preview_url.substr(
-    //               data.media_preview_url.indexOf("_96")
-    //             ),
-    //             "_320.mp4"
-    //           )
-    //           .replace("preview", "aac")
-    //       },
-    //       async function (err) {
-    //         if (err) throw err;
-    //         console.log("__________________________________");
-    //         console.log("ID : " + data.id);
-    //         console.log("Name : " + data.song);
-    //         console.log("Song added successfully");
-    //       }
-    //     );
-    //   } else {
-    //     console.log("Song already exists !!!");
-    //   }
-    // });
-    // }
+    if (song.length === data.numSongs) {
+      await collection.collection("Albums").updateOne(
+        { albumid: data.albumid },
+        {
+          $set: {
+            allsongs: true
+          }
+        }
+      );
+    } else {
+      await collection.collection("Albums").updateOne(
+        { albumid: data.albumid },
+        {
+          $set: {
+            allsongs: false
+          }
+        }
+      );
+    }
+    //console.log((count += data.numSongs));
   });
   await Promise.all(findSongs);
+  console.log("done!!!!!");
+};
+const getsong = async () => {
+  const collection = await mongodb();
+  const projection = { _id: 0, album: 1, albumid: 1, numSongs: 1 };
+  const allalbum = await collection
+    .collection("Albums")
+    .find({ allsongs: false })
+    .project(projection)
+    .toArray();
+  if (allalbum.length !== 0) {
+    allalbum.map(async (data) => {
+      await songs(data.albumid, data.name);
+    });
+  }
 };
 
+const getAlbum = async (artistID) => {
+  const path = `https://www.jiosaavn.com/api.php?_marker=0&_format=json&__call=artist.getArtistPageDetails&artistId=${artistID}&n_album=10&page=0`;
+  let response = await axios.get(path);
+  if (response.data !== null && "topAlbums" in response.data) {
+    let total_albums = response.data.topAlbums.total;
+    let total_requests = 0;
+    if (total_albums % 10 !== 0) {
+      total_requests += Math.floor(total_albums / 70) + 1;
+    } else {
+      total_requests += Math.floor(total_albums / 70);
+    }
+    for (let i = 0; i < total_requests; i++) {
+      await albums(response.data.artistId, i);
+    }
+    // console.log("***********************************");
+    // console.log("All Albums are uploaded successfully");
+    // console.log("***********************************");
+  }
+};
 module.exports = check;

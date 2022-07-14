@@ -1,14 +1,14 @@
-const axios = require('axios');
-const mongodb = require('./mongodb');
-const songs = require('./songs');
+const axios = require("axios");
+const mongodb = require("./mongodb");
+const songs = require("./songs");
 
 async function getAlbums(input, i) {
   let path = `https://www.jiosaavn.com/api.php?_marker=0&_format=json&__call=artist.getArtistPageDetails&artistId=${input}&n_album=70&page=${i}`;
   let requests = await axios.get(path);
   let arrAlbum = requests.data.topAlbums.albums.map(async (data) => {
     if (
-      data.language === 'tamil' &&
-      data.is_movie === '1' &&
+      data.language === "tamil" &&
+      data.is_movie === "1" &&
       data.primaryArtists.indexOf(requests.data.name) > -1
       // ||
       //   (data.artistHash.music.length === 1 &&
@@ -17,13 +17,13 @@ async function getAlbums(input, i) {
       const collection = await mongodb();
       const projection = { _id: 0, albumid: 1, album: 1 };
       const albumCheck = await collection
-        .collection('Albums')
+        .collection("Albums")
         .find({ albumid: data.albumid })
         .project(projection)
         .toArray();
       if (albumCheck.length === 0) {
         const music = () => {
-          let str = '';
+          let str = "";
           if (data.music === null) {
             str += requests.data.name;
           } else {
@@ -32,7 +32,7 @@ async function getAlbums(input, i) {
           return str;
         };
         const musicid = () => {
-          let str = '';
+          let str = "";
           if (data.music_id === null) {
             str += requests.data.artistId;
           } else {
@@ -40,7 +40,7 @@ async function getAlbums(input, i) {
           }
           return str;
         };
-        await collection.collection('Albums').insertOne(
+        await collection.collection("Albums").insertOne(
           {
             numSongs: data.numSongs,
             album: data.album,
@@ -57,24 +57,25 @@ async function getAlbums(input, i) {
             primaryArtistsIds: data.primaryArtistsIds,
             is_movie: data.is_movie,
             song_pids: data.song_pids,
+            allsongs: false
           },
           async function (err) {
             if (err) throw err;
-            console.log('__________________________________');
-            console.log('Album ID : ' + data.albumid);
-            console.log('Name : ' + data.album);
-            console.log('Album added successfully');
+            console.log("__________________________________");
+            console.log("Album ID : " + data.albumid);
+            console.log("Name : " + data.album);
+            console.log("Album added successfully");
             await songs(data.albumid, requests.data.name);
           }
         );
-        console.log('***********************************');
-        console.log('All Songs are uploaded successfully');
-        console.log('***********************************');
+        console.log("***********************************");
+        console.log("All Songs are uploaded successfully");
+        console.log("***********************************");
       } else {
-        console.log('**************************************');
-        console.log('Album ID : ' + data.albumid);
-        console.log('Name : ' + data.album);
-        console.log('Album already exists !!!');
+        console.log("**************************************");
+        console.log("Album ID : " + data.albumid);
+        console.log("Name : " + data.album);
+        console.log("Album already exists !!!");
       }
     }
   });
