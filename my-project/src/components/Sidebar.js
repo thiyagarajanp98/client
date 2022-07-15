@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FcMusic } from 'react-icons/fc';
 import { MdOutlineKeyboardArrowLeft, MdLibraryMusic } from 'react-icons/md';
 import { IoMdAlbums } from 'react-icons/io';
@@ -74,7 +74,7 @@ const Sidebar = () => {
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
             <li key={index}>
-              <Link
+              <NavLink
                 className={`text-sm cursor-pointer group rounded-md `}
                 to={Menu.link}
               >
@@ -86,20 +86,20 @@ const Sidebar = () => {
                   >
                     MY MUSIC
                   </div>
-                  <div className={`flex item-center gap-x-4 p-2 `}>
-                    <span className="text-gray-400 group-hover:text-blue-400 origin-left duration-200">
+                  <div className={`flex item-center gap-x-4 p-2`}>
+                    <span className="text-gray-400 group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200">
                       {Menu.Icon}
                     </span>
                     <span
                       className={`${
                         !open && 'hidden'
-                      } origin-left duration-200 whitespace-nowrap font-semibold text-dark-purple group-hover:text-blue-400  origin-left duration-200`}
+                      } origin-left duration-200 whitespace-nowrap font-semibold text-dark-purple group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
                     >
                       {Menu.title}
                     </span>
                   </div>
                 </div>
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
