@@ -7,8 +7,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const App = () => {
   return (
-    <div className="flex">
-      <Router>
+    <Router>
+      <div className="flex">
         <Sidebar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -16,8 +16,8 @@ const App = () => {
           <Route path="/artists" element={<Artists />} />
           <Route path="/songs" element={<Songs />} />
         </Routes>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 };
 
