@@ -29,6 +29,8 @@ const Sidebar = () => {
       link: '/songs',
       Icon: <RiMusicFill className="h-5 w-5 " />,
     },
+  ];
+  const Menu = [
     {
       title: 'Recently Played',
       link: '/songs',
@@ -44,7 +46,7 @@ const Sidebar = () => {
   return (
     <div className="flex">
       <div
-        className={` flex flex-col h-screen sticky top-0
+        className={`hidden md:flex flex-col h-screen sticky top-0
       p-5 pt-8 border shadow-lg ${
         open ? 'w-60' : 'w-20'
       } duration-300 relative`}
@@ -78,27 +80,62 @@ const Sidebar = () => {
                 className={`text-sm cursor-pointer group rounded-md `}
                 to={Menu.link}
               >
-                <div className="flex flex-col ">
-                  <div
-                    className={`pl-3 mb-4 text-[16px] ${
-                      Menu.gap ? 'block mt-9' : 'hidden mt-2'
-                    } ${!open && 'invisible  whitespace-nowrap'}`}
-                  >
-                    MY MUSIC
+                {({ isActive }) => (
+                  <div className="flex flex-col ">
+                    <div className={`flex item-center gap-x-4 p-2`}>
+                      <span
+                        className={`${
+                          isActive ? 'text-blue-400' : undefined
+                        } text-gray-400 group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
+                      >
+                        {Menu.Icon}
+                      </span>
+                      <span
+                        className={`${isActive ? 'text-blue-400' : undefined} ${
+                          !open && 'hidden'
+                        } origin-left duration-200 whitespace-nowrap font-semibold text-dark-purple group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
+                      >
+                        {Menu.title}
+                      </span>
+                    </div>
                   </div>
-                  <div className={`flex item-center gap-x-4 p-2`}>
-                    <span className="text-gray-400 group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200">
-                      {Menu.Icon}
-                    </span>
-                    <span
-                      className={`${
-                        !open && 'hidden'
-                      } origin-left duration-200 whitespace-nowrap font-semibold text-dark-purple group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
-                    >
-                      {Menu.title}
-                    </span>
+                )}
+              </NavLink>
+            </li>
+          ))}
+          <div
+            className={`pl-3 my-4 text-[16px] whitespace-nowrap ${
+              open ? 'visible' : 'invisible'
+            }`}
+          >
+            MY MUSIC
+          </div>
+          {Menu.map((data, index) => (
+            <li key={index}>
+              <NavLink
+                className={`text-sm cursor-pointer group rounded-md`}
+                to={data.link}
+              >
+                {({ isActive }) => (
+                  <div className="flex flex-col ">
+                    <div className={`flex item-center gap-x-4 p-2`}>
+                      <span
+                        className={`text-gray-400 group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200 ${
+                          isActive ? 'text-blue-400' : undefined
+                        }`}
+                      >
+                        {data.Icon}
+                      </span>
+                      <span
+                        className={`${isActive ? 'text-blue-400' : undefined} ${
+                          !open && 'hidden'
+                        } origin-left duration-200 whitespace-nowrap font-semibold text-dark-purple group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
+                      >
+                        {data.title}
+                      </span>
+                    </div>
                   </div>
-                </div>
+                )}
               </NavLink>
             </li>
           ))}
@@ -107,11 +144,19 @@ const Sidebar = () => {
         <div className="flex mt-auto justify-center ">
           <div className="mb-3">
             <img
-              className="w-14 mb-2 h-14 mx-auto rounded-full border border-gray-100 shadow-sm"
+              className={`w-14 mb-2 mx-auto rounded-full border border-gray-100 shadow-sm ${
+                open ? 'h-14' : 'h-10'
+              }`}
               src="http://source.unsplash.com/100x100/?girl"
               alt="user"
             />
-            <span className="font-medium text-dark-purple">Gianna Joslyn</span>
+            <span
+              className={`font-medium text-dark-purple whitespace-nowrap ${
+                open ? 'block' : 'hidden'
+              }`}
+            >
+              Gianna Joslyn
+            </span>
           </div>
         </div>
       </div>
