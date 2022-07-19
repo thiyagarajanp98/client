@@ -4,7 +4,6 @@ const axios = require('axios');
 const albums = require('./albums');
 
 const check = async () => {
-  console.log('INN');
   await recheck();
   const collection = await mongodb();
   const artistprojection = { _id: 0, artistId: 1 };
@@ -54,7 +53,7 @@ const recheck = async () => {
         }
       );
     }
-    console.log((count += data.numSongs));
+    //console.log((count += data.numSongs));
   });
   await Promise.all(findSongs);
   console.log('done!!!!!');
