@@ -84,16 +84,16 @@ const Sidebar = () => {
                   <div className="flex flex-col ">
                     <div className={`flex item-center gap-x-4 p-2`}>
                       <span
-                        className={`${
-                          isActive ? 'text-blue-400' : undefined
-                        } text-gray-400 group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
+                        className={` ${
+                          isActive ? 'text-blue-400' : 'text-gray-400'
+                        } group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
                       >
                         {Menu.Icon}
                       </span>
                       <span
                         className={`${isActive ? 'text-blue-400' : undefined} ${
                           !open && 'hidden'
-                        } origin-left duration-200 whitespace-nowrap font-semibold text-dark-purple group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
+                        } whitespace-nowrap font-semibold text-dark-purple group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
                       >
                         {Menu.title}
                       </span>
@@ -118,11 +118,11 @@ const Sidebar = () => {
               >
                 {({ isActive }) => (
                   <div className="flex flex-col ">
-                    <div className={`flex item-center gap-x-4 p-2`}>
+                    <div className={`flex item-center gap-x-4 p-2 `}>
                       <span
-                        className={`text-gray-400 group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200 ${
-                          isActive ? 'text-blue-400' : undefined
-                        }`}
+                        className={` ${
+                          isActive ? 'text-blue-400' : 'text-gray-400'
+                        } group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
                       >
                         {data.Icon}
                       </span>

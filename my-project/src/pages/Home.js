@@ -1,6 +1,6 @@
 const Home = () => {
   return (
-    <div className="p-8 w-screen">
+    <div className="mb-8 md:w-screens p-8">
       <h1 className="text-2xl text-center font-semibold">Home page</h1>
       <p>
         In the following example, there are five links that point to elements in
