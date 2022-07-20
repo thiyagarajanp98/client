@@ -1,83 +1,80 @@
+import React from 'react';
+
 const Home = () => {
   return (
-    <div className="mb-8 md:w-screens p-8">
+    <div className="mb-8 w-screen h-screen md:w-screens p-8 bg-gray-200 overflow-y-scroll">
       <h1 className="text-2xl text-center font-semibold">Home page</h1>
       <p>
-        In the following example, there are five links that point to elements in
-        the same document. Selecting the "First" link, for example, will cause
-        to become the target element. Note that the document may jump to a new
-        scroll position, since target elements are placed on the top of the
-        browser window if possible.
+        I'm using google-login package. I've tried to update the background
+        image and dimension of the button, it doesn't seem to work or Am i doing
+        it wrong? I can't find any examples in the docs on how to implement
+        inline styling. I just read that it is an object, here is my code.
       </p>
       <p>
-        In the following example, there are five links that point to elements in
-        the same document. Selecting the "First" link, for example, will cause
-        to become the target element. Note that the document may jump to a new
-        scroll position, since target elements are placed on the top of the
-        browser window if possible.
+        I'm using google-login package. I've tried to update the background
+        image and dimension of the button, it doesn't seem to work or Am i doing
+        it wrong? I can't find any examples in the docs on how to implement
+        inline styling. I just read that it is an object, here is my code.
       </p>
       <p>
-        In the following example, there are five links that point to elements in
-        the same document. Selecting the "First" link, for example, will cause
-        to become the target element. Note that the document may jump to a new
-        scroll position, since target elements are placed on the top of the
-        browser window if possible.
+        I'm using google-login package. I've tried to update the background
+        image and dimension of the button, it doesn't seem to work or Am i doing
+        it wrong? I can't find any examples in the docs on how to implement
+        inline styling. I just read that it is an object, here is my code.
       </p>
       <p>
-        In the following example, there are five links that point to elements in
-        the same document. Selecting the "First" link, for example, will cause
-        to become the target element. Note that the document may jump to a new
-        scroll position, since target elements are placed on the top of the
-        browser window if possible.
+        I'm using google-login package. I've tried to update the background
+        image and dimension of the button, it doesn't seem to work or Am i doing
+        it wrong? I can't find any examples in the docs on how to implement
+        inline styling. I just read that it is an object, here is my code.
       </p>
       <p>
-        In the following example, there are five links that point to elements in
-        the same document. Selecting the "First" link, for example, will cause
-        to become the target element. Note that the document may jump to a new
-        scroll position, since target elements are placed on the top of the
-        browser window if possible.
+        I'm using google-login package. I've tried to update the background
+        image and dimension of the button, it doesn't seem to work or Am i doing
+        it wrong? I can't find any examples in the docs on how to implement
+        inline styling. I just read that it is an object, here is my code.
       </p>
       <p>
-        In the following example, there are five links that point to elements in
-        the same document. Selecting the "First" link, for example, will cause
-        to become the target element. Note that the document may jump to a new
-        scroll position, since target elements are placed on the top of the
-        browser window if possible.
+        I'm using google-login package. I've tried to update the background
+        image and dimension of the button, it doesn't seem to work or Am i doing
+        it wrong? I can't find any examples in the docs on how to implement
+        inline styling. I just read that it is an object, here is my code.
       </p>
       <p>
-        In the following example, there are five links that point to elements in
-        the same document. Selecting the "First" link, for example, will cause
-        to become the target element. Note that the document may jump to a new
-        scroll position, since target elements are placed on the top of the
-        browser window if possible.
+        I'm using google-login package. I've tried to update the background
+        image and dimension of the button, it doesn't seem to work or Am i doing
+        it wrong? I can't find any examples in the docs on how to implement
+        inline styling. I just read that it is an object, here is my code.
       </p>
       <p>
-        In the following example, there are five links that point to elements in
-        the same document. Selecting the "First" link, for example, will cause
-        to become the target element. Note that the document may jump to a new
-        scroll position, since target elements are placed on the top of the
-        browser window if possible.
+        I'm using google-login package. I've tried to update the background
+        image and dimension of the button, it doesn't seem to work or Am i doing
+        it wrong? I can't find any examples in the docs on how to implement
+        inline styling. I just read that it is an object, here is my code.
       </p>
       <p>
-        In the following example, there are five links that point to elements in
-        the same document. Selecting the "First" link, for example, will cause
-        to become the target element. Note that the document may jump to a new
-        scroll position, since target elements are placed on the top of the
-        browser window if possible.
+        I'm using google-login package. I've tried to update the background
+        image and dimension of the button, it doesn't seem to work or Am i doing
+        it wrong? I can't find any examples in the docs on how to implement
+        inline styling. I just read that it is an object, here is my code.
       </p>
       <p>
-        In the following example, there are five links that point to elements in
-        the same document. Selecting the "First" link, for example, will cause
-        to become the target element. Note that the document may jump to a new
-        scroll position, since target elements are placed on the top of the
-        browser window if possible.
+        I'm using google-login package. I've tried to update the background
+        image and dimension of the button, it doesn't seem to work or Am i doing
+        it wrong? I can't find any examples in the docs on how to implement
+        inline styling. I just read that it is an object, here is my code.
       </p>
       <p>
-        In the following example, there are five links that point to elements in
-        the same document. Selecting the "First" link, for example, will cause
-        to become the target element. Note that the document may jump to a new
-        scroll position, since target elements are placed on the top of the
-        browser window if possible.
+        I'm using google-login package. I've tried to update the background
+        image and dimension of the button, it doesn't seem to work or Am i doing
+        it wrong? I can't find any examples in the docs on how to implement
+        inline styling. I just read that it is an object, here is my code.
+      </p>
+      <p>
+        I'm using google-login package. I've tried to update the background
+        image and dimension of the button, it doesn't seem to work or Am i doing
+        it wrong? I can't find any examples in the docs on how to implement
+        inline styling. I just read that it is an object, here is my code.
       </p>
     </div>
   );

@@ -9,8 +9,35 @@ import {
   RiUser2Fill,
   RiMusicFill,
 } from 'react-icons/ri';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
+
+const clientId =
+  '876133612705-5lqe7ccsc3mpo1keg4c8nkhq9vt627nc.apps.googleusercontent.com';
 
 const Sidebar = () => {
+  const [showloginButton, setShowloginButton] = useState(true);
+  const [showlogoutButton, setShowlogoutButton] = useState(false);
+  const [name, setName] = useState('');
+  const [url, setUrl] = useState('');
+
+  const onLoginSuccess = (res) => {
+    setName(res.profileObj.name);
+    setUrl(res.profileObj.imageUrl);
+    console.log('Login Success:', res.profileObj);
+    setShowloginButton(false);
+    setShowlogoutButton(true);
+  };
+
+  const onLoginFailure = (res) => {
+    console.log('Login Failed:', res);
+  };
+
+  const onSignoutSuccess = () => {
+    alert('You have been logged out successfully');
+    console.clear();
+    setShowloginButton(true);
+    setShowlogoutButton(false);
+  };
   const [open, setOpen] = useState(true);
   const Menus = [
     { title: 'Home', link: '/', Icon: <RiHome2Fill className="h-5 w-5 " /> },
@@ -142,22 +169,56 @@ const Sidebar = () => {
         </ul>
 
         <div className="flex mt-auto justify-center ">
-          <div className="mb-3">
-            <img
-              className={`w-14 mb-2 mx-auto rounded-full border border-gray-100 shadow-sm ${
-                open ? 'h-14' : 'h-10'
-              }`}
-              src="http://source.unsplash.com/100x100/?girl"
-              alt="user"
+          {showloginButton ? (
+            <GoogleLogin
+              clientId={clientId}
+              render={(renderProps) => (
+                <button
+                  className="rounded-lg px-4 py-2 bg-green-300 hover:bg-green-400 duration-300"
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  Sign In
+                </button>
+              )}
+              onSuccess={onLoginSuccess}
+              onFailure={onLoginFailure}
+              cookiePolicy={'single_host_origin'}
+              isSignedIn={true}
             />
-            <span
-              className={`font-medium text-dark-purple whitespace-nowrap ${
-                open ? 'block' : 'hidden'
-              }`}
-            >
-              Gianna Joslyn
-            </span>
-          </div>
+          ) : null}
+
+          {showlogoutButton ? (
+            <GoogleLogout
+              clientId={clientId}
+              render={(renderProps) => (
+                <div className="mb-3">
+                  <img
+                    className={`w-14 mb-2 mx-auto rounded-full border border-gray-100 shadow-sm ${
+                      open ? 'h-14' : 'h-10'
+                    }`}
+                    src={url}
+                    alt="user"
+                  />
+                  <span
+                    className={`font-medium text-dark-purple whitespace-nowrap ${
+                      open ? 'block' : 'hidden'
+                    }`}
+                  >
+                    {name}
+                  </span>
+                  <button
+                    className="rounded-lg px-4 py-2 bg-green-300 hover:bg-green-400 duration-300"
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                  >
+                    sign out
+                  </button>
+                </div>
+              )}
+              onLogoutSuccess={onSignoutSuccess}
+            ></GoogleLogout>
+          ) : null}
         </div>
       </div>
     </div>
