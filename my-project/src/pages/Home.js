@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 const Home = () => {
   return (
-    <div className="mb-8 w-screen  md:w-screens p-8">
+    <div className="p-8 top-10 bottom-14">
       <h1 className="text-2xl text-center font-semibold">Home page</h1>
       <p>
         I'm using google-login package. I've tried to update the background

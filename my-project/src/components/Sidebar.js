@@ -1,87 +1,87 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { FcMusic } from 'react-icons/fc';
-import { MdOutlineKeyboardArrowLeft, MdLibraryMusic } from 'react-icons/md';
-import { IoMdAlbums } from 'react-icons/io';
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { FcMusic } from "react-icons/fc";
+import { MdOutlineKeyboardArrowLeft, MdLibraryMusic } from "react-icons/md";
+import { IoMdAlbums } from "react-icons/io";
 import {
   RiHome2Fill,
   RiAlbumFill,
   RiUser2Fill,
-  RiMusicFill,
-} from 'react-icons/ri';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
+  RiMusicFill
+} from "react-icons/ri";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
 
 const clientId =
-  '876133612705-5lqe7ccsc3mpo1keg4c8nkhq9vt627nc.apps.googleusercontent.com';
+  "876133612705-5lqe7ccsc3mpo1keg4c8nkhq9vt627nc.apps.googleusercontent.com";
 
 const Sidebar = () => {
   const [showloginButton, setShowloginButton] = useState(true);
   const [showlogoutButton, setShowlogoutButton] = useState(false);
-  const [name, setName] = useState('');
-  const [url, setUrl] = useState('');
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
 
   const onLoginSuccess = (res) => {
     setName(res.profileObj.name);
     setUrl(res.profileObj.imageUrl);
-    console.log('Login Success:', res.profileObj);
+    console.log("Login Success:", res.data);
     setShowloginButton(false);
     setShowlogoutButton(true);
   };
 
   const onLoginFailure = (res) => {
-    console.log('Login Failed:', res);
+    console.log("Login Failed:", res);
   };
 
   const onSignoutSuccess = () => {
-    alert('You have been logged out successfully');
+    alert("You have been logged out successfully");
     console.clear();
     setShowloginButton(true);
     setShowlogoutButton(false);
   };
   const [open, setOpen] = useState(true);
   const Menus = [
-    { title: 'Home', link: '/', Icon: <RiHome2Fill className="h-5 w-5 " /> },
+    { title: "Home", link: "/", Icon: <RiHome2Fill className="h-5 w-5 " /> },
     {
-      title: 'Albums',
-      link: '/albums',
-      Icon: <RiAlbumFill className="h-5 w-5" />,
+      title: "Albums",
+      link: "/albums",
+      Icon: <RiAlbumFill className="h-5 w-5" />
     },
     {
-      title: 'Artists',
-      link: '/artists',
-      Icon: <RiUser2Fill className="h-5 w-5 " />,
+      title: "Artists",
+      link: "/artists",
+      Icon: <RiUser2Fill className="h-5 w-5 " />
     },
     {
-      title: 'Songs',
-      link: '/songs',
-      Icon: <RiMusicFill className="h-5 w-5 " />,
-    },
+      title: "Songs",
+      link: "/songs",
+      Icon: <RiMusicFill className="h-5 w-5 " />
+    }
   ];
   const Menu = [
     {
-      title: 'Recently Played',
-      link: '/songs',
+      title: "Recently Played",
+      link: "/songs",
       gap: true,
-      Icon: <IoMdAlbums className="h-5 w-5 " />,
+      Icon: <IoMdAlbums className="h-5 w-5 " />
     },
     {
-      title: 'Library',
-      link: '/songs',
-      Icon: <MdLibraryMusic className="h-5 w-5" />,
-    },
+      title: "Library",
+      link: "/songs",
+      Icon: <MdLibraryMusic className="h-5 w-5" />
+    }
   ];
   return (
     <div className="flex">
       <div
         className={`hidden md:flex flex-col h-screen sticky top-0
       p-5 pt-8 border shadow-lg ${
-        open ? 'w-60' : 'w-20'
+        open ? "w-60" : "w-20"
       } duration-300 relative`}
       >
         <MdOutlineKeyboardArrowLeft
           className={`bg-white text-dark-purple p-1 h-6 w-6
              rounded-full absolute -right-3 top-11 border
-             border-dark-purple cursor-pointer ${!open && 'rotate-180'}`}
+             border-dark-purple cursor-pointer ${!open && "rotate-180"}`}
           onClick={() => {
             setOpen(!open);
           }}
@@ -94,7 +94,7 @@ const Sidebar = () => {
           </span>
           <h1
             className={`text-dark-purple font-medium text-2xl pt-1 ${
-              !open && 'hidden'
+              !open && "hidden"
             } origin-left duration-200 whitespace-nowrap`}
           >
             Music Air
@@ -112,15 +112,16 @@ const Sidebar = () => {
                     <div className={`flex item-center gap-x-4 p-2`}>
                       <span
                         className={` ${
-                          isActive ? 'text-blue-400' : 'text-gray-400'
+                          isActive ? "text-blue-400" : "text-gray-400"
                         } group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
                       >
                         {Menu.Icon}
                       </span>
                       <span
-                        className={`${isActive ? 'text-blue-400' : undefined} ${
-                          !open && 'hidden'
-                        } whitespace-nowrap font-semibold text-dark-purple group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
+                        className={`${isActive ? "text-blue-400" : undefined} ${
+                          !open && "hidden"
+                        }
+                         font-semibold text-dark-purple group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
                       >
                         {Menu.title}
                       </span>
@@ -132,7 +133,7 @@ const Sidebar = () => {
           ))}
           <div
             className={`pl-3 my-4 text-[16px] whitespace-nowrap ${
-              open ? 'visible' : 'invisible'
+              open ? "visible" : "invisible"
             }`}
           >
             MY MUSIC
@@ -148,14 +149,14 @@ const Sidebar = () => {
                     <div className={`flex item-center gap-x-4 p-2 `}>
                       <span
                         className={` ${
-                          isActive ? 'text-blue-400' : 'text-gray-400'
+                          isActive ? "text-blue-400" : "text-gray-400"
                         } group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
                       >
                         {data.Icon}
                       </span>
                       <span
-                        className={`${isActive ? 'text-blue-400' : undefined} ${
-                          !open && 'hidden'
+                        className={`${isActive ? "text-blue-400" : undefined} ${
+                          !open && "hidden"
                         } origin-left duration-200 whitespace-nowrap font-semibold text-dark-purple group-hover:text-blue-400 group-hover:animate-heartBeat  origin-left duration-200`}
                       >
                         {data.title}
@@ -183,7 +184,7 @@ const Sidebar = () => {
               )}
               onSuccess={onLoginSuccess}
               onFailure={onLoginFailure}
-              cookiePolicy={'single_host_origin'}
+              cookiePolicy={"single_host_origin"}
               isSignedIn={true}
             />
           ) : null}
@@ -195,14 +196,14 @@ const Sidebar = () => {
                 <div className="mb-3">
                   <img
                     className={`w-14 mb-2 mx-auto rounded-full border border-gray-100 shadow-sm ${
-                      open ? 'h-14' : 'h-10'
+                      open ? "h-14" : "h-10"
                     }`}
                     src={url}
                     alt="user"
                   />
                   <span
                     className={`font-medium text-dark-purple whitespace-nowrap ${
-                      open ? 'block' : 'hidden'
+                      open ? "block" : "hidden"
                     }`}
                   >
                     {name}
