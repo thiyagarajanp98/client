@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import { useEffect } from "react";
 import { gapi } from "gapi-script";
+import { RiSearchLine } from "react-icons/ri";
 
 const Id =
   "876133612705-5lqe7ccsc3mpo1keg4c8nkhq9vt627nc.apps.googleusercontent.com";
@@ -34,8 +35,31 @@ const App = () => {
         </Routes> */}
         <div className="flex-grow">
           <div className="md:hidden flex h-12 bg-white border-b border-solid shadow-lg sticky top-0">
-            <div className="flex-1 flex items-center text-red-700 font-mono p-2">
-              Menu
+            <div className="flex-1 flex items-center text-red-700 font-mono p-2 group gap-x-1">
+              <RiSearchLine className="h-6 w-6 text-black ml-4" />
+              <input
+                type="search"
+                className="hidden
+        form-control
+        block
+        w-60
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        rounded
+        transition
+        ease-in-out
+        m-0
+        pointer
+        group-hover:block duration-200
+        focus:block border-b-4 text-gray-700 focus:bg-white focus:border-neutral-900 focus:outline-none
+      "
+                id="exampleSearch"
+                placeholder="Search"
+              />
             </div>
           </div>
           <Routes>
