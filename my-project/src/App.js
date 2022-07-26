@@ -54,7 +54,7 @@ const App = () => {
         ease-in-out
         m-0
         pointer
-        group-hover:block duration-200
+        group-hover:block group-hover:animate-slideInRight duration-200
         focus:block border-b-4 text-gray-700 focus:bg-white focus:border-neutral-900 focus:outline-none
       "
                 id="exampleSearch"
