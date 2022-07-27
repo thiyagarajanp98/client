@@ -9,10 +9,10 @@ import {
   RiUser2Fill,
   RiMusicFill
 } from "react-icons/ri";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
+// import { GoogleLogin, GoogleLogout } from "react-google-login";
 
-const clientId =
-  "876133612705-5lqe7ccsc3mpo1keg4c8nkhq9vt627nc.apps.googleusercontent.com";
+// const clientId =
+//   "876133612705-5lqe7ccsc3mpo1keg4c8nkhq9vt627nc.apps.googleusercontent.com";
 
 const Sidebar = () => {
   const [showloginButton, setShowloginButton] = useState(true);
@@ -169,7 +169,7 @@ const Sidebar = () => {
           ))}
         </ul>
 
-        <div className="flex mt-auto justify-center ">
+        {/* <div className="flex mt-auto justify-center ">
           {showloginButton ? (
             <GoogleLogin
               clientId={clientId}
@@ -220,7 +220,7 @@ const Sidebar = () => {
               onLogoutSuccess={onSignoutSuccess}
             ></GoogleLogout>
           ) : null}
-        </div>
+        </div> */}
       </div>
     </div>
   );
