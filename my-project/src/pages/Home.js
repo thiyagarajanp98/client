@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect } from 'react';
+import axios from 'axios';
 
 const Home = () => {
+  useEffect(() => {
+    // Update the document title using the browser API
+    axios.get(baseURL).then((res) => {
+      console.log(res);
+    });
+  });
   return (
     <div className="p-8 top-10 bottom-14">
       <h1 className="text-2xl text-center font-semibold">Home page</h1>
