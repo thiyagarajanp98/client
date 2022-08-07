@@ -5,7 +5,6 @@ import Artists from "./pages/Artists";
 import Songs from "./pages/Songs";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
-import { useEffect } from "react";
 // import { gapi } from "gapi-script";
 import { RiSearchLine } from "react-icons/ri";
 

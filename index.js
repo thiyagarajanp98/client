@@ -42,7 +42,9 @@ app.get("/delete", (request, response) => {
 app.get("/getAllArtists", async (request, response) => {
   //send 'Hi, from Node server' to client
   let ID = request.query.id;
-  const data = await getArtists(ID);
+  let page=(request.query.page)?parseInt(request.query.page):1;
+		let perPage=(request.query.perPage)?parseInt(request.query.perPage):10;
+  const data = await getArtists(ID,page,perPage);
   response.send(JSON.stringify(data));
 });
 
