@@ -6,6 +6,7 @@ const albums = require("./albums");
 const check = require("./check");
 const remove = require("./delete");
 const getArtists = require("./allArtists");
+const getAlbums = require("./allAlbums");
 const home = require("./home");
 // const albumSongs = require("./getsongs");
 
@@ -33,10 +34,11 @@ app.get("/upload", (request, response) => {
   getData(artistID);
   response.send("Hi, from upload page");
 });
-app.get("/delete", (request, response) => {
+app.get("/delete", async (request, response) => {
   //send 'Hi, from Node server' to client
-  let ID = request.query.id;
-  remove(ID);
+  // let ID = request.query.id;
+  const data = await remove();
+  response.send(JSON.stringify(data));
   response.send("Hi, from delete page");
 });
 
@@ -46,6 +48,14 @@ app.get("/getAllArtists", async (request, response) => {
   let page = request.query.page ? parseInt(request.query.page) : 1;
   let perPage = request.query.perPage ? parseInt(request.query.perPage) : 10;
   const data = await getArtists(ID, page, perPage);
+  response.send(JSON.stringify(data));
+});
+
+app.get("/getAllAlbums", async (request, response) => {
+  //send 'Hi, from Node server' to client
+  let page = request.query.page ? parseInt(request.query.page) : 1;
+  let perPage = request.query.perPage ? parseInt(request.query.perPage) : 20;
+  const data = await getAlbums(page, perPage);
   response.send(JSON.stringify(data));
 });
 

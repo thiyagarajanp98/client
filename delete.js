@@ -1,25 +1,41 @@
-const mongodb = require('./mongodb');
+const mongodb = require("./mongodb");
 
-const Delete = async (id) => {
+const Delete = async () => {
   const collection = await mongodb();
-  await collection
-    .collection('Albums')
-    .deleteMany({ albumid: id }, async function (err) {
-      if (err) throw err;
-      console.log('All albums removed');
-    });
-  await collection
-    .collection('Songs')
-    .deleteMany({ albumid: id }, async function (err) {
-      if (err) throw err;
-      console.log('All songs removed');
-    });
-  // await collection
-  //   .collection("artists")
-  //   .deleteMany({ artistId: id }, async function (err) {
-  //     if (err) throw err;
-  //     console.log("Artist removed");
-  //   });
+  const pipeline = [
+    {
+      $group: {
+        _id: {
+          id: "$albumid"
+        },
+        uniqueIds: {
+          $addToSet: { id: "$_id", album: "$album", albumid: "$albumid" }
+        },
+        count: {
+          $sum: 1
+        }
+      }
+    },
+    {
+      $match: {
+        count: {
+          $gt: 1
+        }
+      }
+    },
+    {
+      $sort: {
+        count: -1
+      }
+    }
+  ];
+  const aggCursor = collection.collection("Albums").aggregate(pipeline);
+  //console.log(aggCursor);
+  let data = [];
+  await aggCursor.forEach((airbnbListing) => {
+    data.push(airbnbListing);
+  });
+  return data;
 };
 
 module.exports = Delete;

@@ -15,29 +15,6 @@ import {
 //   "876133612705-5lqe7ccsc3mpo1keg4c8nkhq9vt627nc.apps.googleusercontent.com";
 
 const Sidebar = () => {
-  const [showloginButton, setShowloginButton] = useState(true);
-  const [showlogoutButton, setShowlogoutButton] = useState(false);
-  const [name, setName] = useState("");
-  const [url, setUrl] = useState("");
-
-  const onLoginSuccess = (res) => {
-    setName(res.profileObj.name);
-    setUrl(res.profileObj.imageUrl);
-    console.log("Login Success:", res.data);
-    setShowloginButton(false);
-    setShowlogoutButton(true);
-  };
-
-  const onLoginFailure = (res) => {
-    console.log("Login Failed:", res);
-  };
-
-  const onSignoutSuccess = () => {
-    alert("You have been logged out successfully");
-    console.clear();
-    setShowloginButton(true);
-    setShowlogoutButton(false);
-  };
   const [open, setOpen] = useState(true);
   const Menus = [
     { title: "Home", link: "/", Icon: <RiHome2Fill className="h-5 w-5 " /> },
