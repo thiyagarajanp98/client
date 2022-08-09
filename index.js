@@ -6,6 +6,7 @@ const albums = require("./albums");
 const check = require("./check");
 const remove = require("./delete");
 const getArtists = require("./allArtists");
+const home = require("./home");
 // const albumSongs = require("./getsongs");
 
 //create express app
@@ -42,9 +43,16 @@ app.get("/delete", (request, response) => {
 app.get("/getAllArtists", async (request, response) => {
   //send 'Hi, from Node server' to client
   let ID = request.query.id;
-  let page=(request.query.page)?parseInt(request.query.page):1;
-		let perPage=(request.query.perPage)?parseInt(request.query.perPage):10;
-  const data = await getArtists(ID,page,perPage);
+  let page = request.query.page ? parseInt(request.query.page) : 1;
+  let perPage = request.query.perPage ? parseInt(request.query.perPage) : 10;
+  const data = await getArtists(ID, page, perPage);
+  response.send(JSON.stringify(data));
+});
+
+app.get("/home", async (request, response) => {
+  //send 'Hi, from Node server' to client
+  let id = request.query.id;
+  const data = await home(id);
   response.send(JSON.stringify(data));
 });
 

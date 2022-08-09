@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+// import axios from "axios";
 import Row from "./Row";
+import Rows from "./Rows";
 
 const Home = () => {
   // const [data, setdata] = useState([]);
   // useEffect(() => {
   //   // Update the document title using the browser API
-  //   const id = 455663;
-  //   axios
-  //     .get(`https://e6xi0h.sse.codesandbox.io/getAllArtists?id=${id}`)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setdata(res.data);
-  //     });
+  //   axios.get(`https://kjnkrt.sse.codesandbox.io/home`).then((res) => {
+  //     console.log(res.data);
+  //     setdata(res.data[0]);
+  //   });
+  //   console.log("Setdata", data);
   // }, []);
   return (
     <div className="p-8 top-10 bottom-14">
       <h1 className="text-2xl text-center font-semibold">Home page</h1>
       <Row title="Trending" />
+      <Rows title="New trending" />
+      <Rows title="New Releases" />
     </div>
   );
 };

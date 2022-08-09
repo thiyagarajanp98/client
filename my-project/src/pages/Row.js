@@ -41,7 +41,7 @@ const Row = ({ title }) => {
         {data.map((res) => {
           return (
             <img
-              className="mt-3 mr-3 ml-1 hover:scale-105 duration-300"
+              className="mt-3 mr-3 mb-1 ml-1 hover:scale-105 duration-300"
               key={res._id}
               src={res.imageUrl}
               alt={res.album}
