@@ -1,6 +1,6 @@
 import React from "react";
 // import axios from "axios";
-// import Row from "./Row";
+import Row from "./Row";
 import Rows from "./Rows";
 
 const Home = () => {
@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <div className="p-8 top-10 bottom-14">
       <h1 className="text-2xl text-center font-semibold">Home page</h1>
-      {/* <Row title="Trending" /> */}
+      <Row title="Trending" />
       <Rows title="Trending Now" />
       <Rows title="New Releases" />
     </div>

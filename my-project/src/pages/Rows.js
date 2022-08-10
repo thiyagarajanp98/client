@@ -6,10 +6,8 @@ const Rows = ({ title }) => {
     axios
       .get(`https://v9ptfl.sse.codesandbox.io/home?id=${title}`)
       .then((res) => {
-        let temp = Object.keys(res.data[0]);
-        console.log();
-        console.log(res.data[0][temp[0]]);
         setdata(res.data);
+        console.log(res.data);
       });
   };
   useEffect(() => {
@@ -25,10 +23,10 @@ const Rows = ({ title }) => {
         {data.map((res) => {
           return (
             <img
-              className="mt-3 mr-3 mb-1 ml-1 hover:scale-105 duration-300"
-              key={res.id}
+              className="w-40 h-40 mt-3 mr-3 mb-1 ml-1 hover:scale-105 duration-300"
+              key={res._id}
               src={res.image}
-              alt={res.album}
+              alt={res.title}
             />
           );
         })}
