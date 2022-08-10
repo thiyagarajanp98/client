@@ -61,8 +61,8 @@ app.get("/getAllAlbums", async (request, response) => {
 
 app.get("/home", async (request, response) => {
   //send 'Hi, from Node server' to client
-  let id = request.query.id;
-  const data = await home(id);
+  let ID = request.query.id;
+  const data = await home(ID);
   response.send(JSON.stringify(data));
 });
 

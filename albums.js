@@ -16,12 +16,17 @@ async function getAlbums(input, i) {
     ) {
       const collection = await mongodb();
       const projection = { _id: 0, albumid: 1, album: 1 };
-      const albumCheck = await collection
+      const albumIDCheck = await collection
         .collection("Albums")
         .find({ albumid: data.albumid })
         .project(projection)
         .toArray();
-      if (albumCheck.length === 0) {
+      const albumCheck = await collection
+        .collection("Albums")
+        .find({ albumid: data.album })
+        .project(projection)
+        .toArray();
+      if (albumIDCheck.length === 0 && albumCheck.length === 0) {
         const music = () => {
           let str = "";
           if (data.music === null) {

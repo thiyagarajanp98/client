@@ -4,7 +4,7 @@ const Rows = ({ title }) => {
   const [data, setdata] = useState([]);
   const loadAlbum = () => {
     axios
-      .get(`https://kjnkrt.sse.codesandbox.io/home?id=${title}`)
+      .get(`https://v9ptfl.sse.codesandbox.io/home?id=${title}`)
       .then((res) => {
         let temp = Object.keys(res.data[0]);
         console.log();
@@ -22,7 +22,7 @@ const Rows = ({ title }) => {
         id="grid"
         className="flex overflow-y-hidden overflow-x-scroll scrollbar-hide"
       >
-        {/* {data.map((res) => {
+        {data.map((res) => {
           return (
             <img
               className="mt-3 mr-3 mb-1 ml-1 hover:scale-105 duration-300"
@@ -31,7 +31,7 @@ const Rows = ({ title }) => {
               alt={res.album}
             />
           );
-        })} */}
+        })}
       </div>
     </div>
   );

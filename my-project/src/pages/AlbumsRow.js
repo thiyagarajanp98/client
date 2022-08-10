@@ -5,7 +5,7 @@ const Row = ({ title }) => {
   const [data, setdata] = useState([]);
   const loadAlbum = () => {
     axios
-      .get(`https://kjnkrt.sse.codesandbox.io/getAllAlbums?page=${offset}`)
+      .get(`https://v9ptfl.sse.codesandbox.io/getAllAlbums?page=${offset}`)
       .then((res) => {
         console.log(res.data);
         setdata((olddata) => [...olddata, ...res.data]);
