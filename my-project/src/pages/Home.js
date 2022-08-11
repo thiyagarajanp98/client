@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 // import axios from "axios";
-import Row from "./Row";
-import Rows from "./Rows";
+import Row from './Row';
+import Rows from './Rows';
 
 const Home = () => {
   // const [data, setdata] = useState([]);
@@ -14,7 +14,7 @@ const Home = () => {
   //   console.log("Setdata", data);
   // }, []);
   return (
-    <div className="p-8 top-10 bottom-14">
+    <div className="p-8 pb-16 md:pb-0 top-10 bottom-20">
       <h1 className="text-2xl text-center font-semibold">Home page</h1>
       <Row title="Trending" />
       <Rows title="Trending Now" />
