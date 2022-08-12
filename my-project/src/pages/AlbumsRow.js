@@ -7,7 +7,7 @@ const Row = ({ title }) => {
   const [data, setdata] = useState([]);
   const loadAlbum = () => {
     axios
-      .get(`https://j26y7y.sse.codesandbox.io/getAllAlbums?page=${offset}`)
+      .get(`https://uwj5pp.sse.codesandbox.io/getAllAlbums?page=${offset}`)
       .then((res) => {
         console.log(res.data);
         setdata((olddata) => [...olddata, ...res.data]);
@@ -40,7 +40,7 @@ const Row = ({ title }) => {
               onClick={() => {
                 navigate("/albumDetails", {
                   state: {
-                    albumId: res.albumid,
+                    id: res.albumid,
                     type: "album"
                   }
                 });

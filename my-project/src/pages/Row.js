@@ -9,7 +9,7 @@ const Row = ({ title }) => {
     const id = 455663;
     axios
       .get(
-        `https://j26y7y.sse.codesandbox.io/getAllArtists?id=${id}&page=${offset}`
+        `https://uwj5pp.sse.codesandbox.io/getAllArtists?id=${id}&page=${offset}`
       )
       .then((res) => {
         console.log(res.data);
@@ -47,7 +47,7 @@ const Row = ({ title }) => {
               onClick={() => {
                 navigate("/albumDetails", {
                   state: {
-                    albumId: res.albumid,
+                    id: res.albumid,
                     type: "album"
                   }
                 });

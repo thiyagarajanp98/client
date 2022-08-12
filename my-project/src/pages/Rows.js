@@ -6,7 +6,7 @@ const Rows = ({ title }) => {
   const [data, setdata] = useState([]);
   const loadAlbum = () => {
     axios
-      .get(`https://j26y7y.sse.codesandbox.io/home?id=${title}`)
+      .get(`https://uwj5pp.sse.codesandbox.io/home?id=${title}`)
       .then((res) => {
         setdata(res.data);
         console.log(res.data);
@@ -29,7 +29,7 @@ const Rows = ({ title }) => {
               onClick={() => {
                 navigate("/albumDetails", {
                   state: {
-                    albumId: res.id,
+                    id: res.id,
                     type: res.type
                   }
                 });

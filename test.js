@@ -10,10 +10,12 @@ const test = async () => {
   //   .toArray();
   // console.log(albumCheck);
   // return albumCheck;
-  const path = `https://www.jiosaavn.com/api.php?__call=webapi.getLaunchData&api_version=4&_format=json&_marker=0&ctx=wap6dot0&entity_language=tamil`;
-  let response = await axios.get(path).toArray();
+  const path = `https://www.jiosaavn.com/api.php?__call=song.getDetails&cc=in&_marker=0%3F_marker%3D0&_format=json&pids=_h4vwcy7`;
+  let response = await axios.get(path);
+  //console.log(Object.keys(response.data)[0]);
 
-  return response;
+  console.log(response.data[Object.keys(response.data)[0]]);
+  return response.data;
 };
 
 test();

@@ -10,6 +10,7 @@ const getAlbums = require("./allAlbums");
 const home = require("./home");
 const getOneSong = require("./getOneSong");
 const getOneAlbum = require("./getOneAlbum");
+const details = require("./details");
 // const albumSongs = require("./getsongs");
 
 //create express app
@@ -77,6 +78,14 @@ app.get("/getOneAlbum", async (request, response) => {
   //send 'Hi, from Node server' to client
   let ID = request.query.id;
   const data = await getOneAlbum(ID);
+  response.send(JSON.stringify(data));
+});
+
+app.get("/details", async (request, response) => {
+  //send 'Hi, from Node server' to client
+  let ID = request.query.id;
+  let type = request.query.type;
+  const data = await details(ID, type);
   response.send(JSON.stringify(data));
 });
 
