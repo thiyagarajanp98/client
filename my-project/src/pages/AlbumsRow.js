@@ -5,7 +5,7 @@ const Row = ({ title }) => {
   const [data, setdata] = useState([]);
   const loadAlbum = () => {
     axios
-      .get(`https://v9ptfl.sse.codesandbox.io/getAllAlbums?page=${offset}`)
+      .get(`https://mxxrgh.sse.codesandbox.io/getAllAlbums?page=${offset}`)
       .then((res) => {
         console.log(res.data);
         setdata((olddata) => [...olddata, ...res.data]);
@@ -29,18 +29,19 @@ const Row = ({ title }) => {
   }, []);
   return (
     <div className="p-1">
-      <h2>{title}</h2>
+      <h2 className="font-bold">{title}</h2>
       <div id="grid" className="grid grid-cols-2 md:grid-cols-5 gap-4">
         {data.map((res) => {
           return (
-            <div key={res._id} className="text-center font-semibold">
-              <img
-                className="mt-3 mr-3 mb-1 ml-1 hover:scale-105 duration-300"
-                src={res.imageUrl}
-                alt={res.album}
+            <section key={res._id}>
+              <div
+                className="rounded w-40 h-40 mt-3 mr-3 mb-1 ml-1 hover:scale-105 duration-300"
+                style={{ backgroundImage: `url(${res.imageUrl})` }}
               />
-              <h3 className="pt-2">{res.album}</h3>
-            </div>
+              <div className=" truncate w-40 text-center text-base font-semibold">
+                {res.album}
+              </div>
+            </section>
           );
         })}
       </div>

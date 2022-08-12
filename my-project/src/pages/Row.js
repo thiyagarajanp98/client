@@ -7,7 +7,7 @@ const Row = ({ title }) => {
     const id = 455663;
     axios
       .get(
-        `https://v9ptfl.sse.codesandbox.io/getAllArtists?id=${id}&page=${offset}`
+        `https://mxxrgh.sse.codesandbox.io/getAllArtists?id=${id}&page=${offset}`
       )
       .then((res) => {
         console.log(res.data);
@@ -33,19 +33,22 @@ const Row = ({ title }) => {
   }, []);
   return (
     <div className="p-1">
-      <h2>{title}</h2>
+      <h2 className="font-bold">{title}</h2>
       <div
         id="grid"
         className="flex overflow-y-hidden overflow-x-scroll scrollbar-hide"
       >
         {data.map((res) => {
           return (
-            <img
-              className="w-40 h-40 mt-3 mr-3 mb-1 ml-1 hover:scale-105 duration-300"
-              key={res._id}
-              src={res.imageUrl}
-              alt={res.album}
-            />
+            <section key={res._id}>
+              <div
+                className="rounded w-40 h-40 mt-3 mr-3 mb-1 ml-1 hover:scale-105 duration-300"
+                style={{ backgroundImage: `url(${res.imageUrl})` }}
+              />
+              <div className="truncate w-40 text-center text-base font-semibold">
+                {res.album}
+              </div>
+            </section>
           );
         })}
       </div>
