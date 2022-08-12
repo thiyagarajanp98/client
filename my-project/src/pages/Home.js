@@ -14,7 +14,7 @@ const Home = () => {
   //   console.log("Setdata", data);
   // }, []);
   return (
-    <div className="w-screen md:w-[1020px] pb-16 md:pb-0 p-8 top-10 bottom-20">
+    <div className="w-screen pb-16 md:pb-0 p-8 top-10 bottom-20">
       <h1 className="text-2xl text-center font-semibold">Home page</h1>
       <Row title="Trending" />
       <Rows title="Trending Now" />
