@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Row = ({ title }) => {
+  const navigate = useNavigate();
   let offset = 1;
   const [data, setdata] = useState([]);
   const loadAlbum = () => {
     axios
-      .get(`https://mxxrgh.sse.codesandbox.io/getAllAlbums?page=${offset}`)
+      .get(`https://j26y7y.sse.codesandbox.io/getAllAlbums?page=${offset}`)
       .then((res) => {
         console.log(res.data);
         setdata((olddata) => [...olddata, ...res.data]);
@@ -33,7 +35,16 @@ const Row = ({ title }) => {
       <div id="grid" className="grid grid-cols-2 md:grid-cols-5 gap-4">
         {data.map((res) => {
           return (
-            <section key={res._id}>
+            <section
+              key={res._id}
+              onClick={() => {
+                navigate("/albumDetails", {
+                  state: {
+                    userId: res.album
+                  }
+                });
+              }}
+            >
               <div
                 className="rounded w-40 h-40 mt-3 mr-3 mb-1 ml-1 hover:scale-105 duration-300"
                 style={{ backgroundImage: `url(${res.imageUrl})` }}

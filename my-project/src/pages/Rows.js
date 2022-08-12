@@ -4,7 +4,7 @@ const Rows = ({ title }) => {
   const [data, setdata] = useState([]);
   const loadAlbum = () => {
     axios
-      .get(`https://mxxrgh.sse.codesandbox.io/home?id=${title}`)
+      .get(`https://j26y7y.sse.codesandbox.io/home?id=${title}`)
       .then((res) => {
         setdata(res.data);
         console.log(res.data);
@@ -22,7 +22,7 @@ const Rows = ({ title }) => {
       >
         {data.map((res) => {
           return (
-            <section key={res._id}>
+            <section key={res.id}>
               <div
                 className="rounded w-40 h-40 mt-3 mr-3 mb-1 ml-1 hover:scale-105 duration-300"
                 style={{ backgroundImage: `url(${res.image})` }}

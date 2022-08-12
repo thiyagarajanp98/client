@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Albums from "./pages/Albums";
 import Artists from "./pages/Artists";
 import Songs from "./pages/Songs";
+import AlbumDetails from "./pages/AlbumDetails";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 // import { gapi } from "gapi-script";
@@ -66,6 +67,7 @@ const App = () => {
             <Route path="/albums" element={<Albums />} />
             <Route path="/artists" element={<Artists />} />
             <Route path="/songs" element={<Songs />} />
+            <Route path="/albumDetails" element={<AlbumDetails />} />
           </Routes>
           {/* <div class="p-4 bg-green-100 h-64">deneme</div>
           <div class="p-4 bg-green-200 h-64">deneme</div>
