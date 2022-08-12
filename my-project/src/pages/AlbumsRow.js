@@ -40,7 +40,8 @@ const Row = ({ title }) => {
               onClick={() => {
                 navigate("/albumDetails", {
                   state: {
-                    userId: res.album
+                    albumId: res.albumid,
+                    type: "album"
                   }
                 });
               }}

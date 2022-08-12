@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Rows = ({ title }) => {
+  const navigate = useNavigate();
   const [data, setdata] = useState([]);
   const loadAlbum = () => {
     axios
@@ -22,7 +24,17 @@ const Rows = ({ title }) => {
       >
         {data.map((res) => {
           return (
-            <section key={res.id}>
+            <section
+              key={res.id}
+              onClick={() => {
+                navigate("/albumDetails", {
+                  state: {
+                    albumId: res.id,
+                    type: res.type
+                  }
+                });
+              }}
+            >
               <div
                 className="rounded w-40 h-40 mt-3 mr-3 mb-1 ml-1 hover:scale-105 duration-300"
                 style={{ backgroundImage: `url(${res.image})` }}

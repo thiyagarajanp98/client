@@ -8,6 +8,8 @@ const remove = require("./delete");
 const getArtists = require("./allArtists");
 const getAlbums = require("./allAlbums");
 const home = require("./home");
+const getOneSong = require("./getOneSong");
+const getOneAlbum = require("./getOneAlbum");
 // const albumSongs = require("./getsongs");
 
 //create express app
@@ -63,6 +65,18 @@ app.get("/home", async (request, response) => {
   //send 'Hi, from Node server' to client
   let ID = request.query.id;
   const data = await home(ID);
+  response.send(JSON.stringify(data));
+});
+app.get("/getOneSong", async (request, response) => {
+  //send 'Hi, from Node server' to client
+  let ID = request.query.id;
+  const data = await getOneSong(ID);
+  response.send(JSON.stringify(data));
+});
+app.get("/getOneAlbum", async (request, response) => {
+  //send 'Hi, from Node server' to client
+  let ID = request.query.id;
+  const data = await getOneAlbum(ID);
   response.send(JSON.stringify(data));
 });
 

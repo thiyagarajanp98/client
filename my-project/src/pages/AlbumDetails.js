@@ -2,7 +2,8 @@ import { useLocation } from "react-router-dom";
 
 const AlbumDetails = () => {
   const location = useLocation();
-  console.log(location.state.userId);
+  console.log(location.state.albumId);
+  console.log(location.state.type);
   return (
     <div className="p-8 top-10">
       <h1 className="text-2xl text-center font-semibold">AlbumDetails page</h1>
